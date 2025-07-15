@@ -36,6 +36,7 @@
     <model-viewer class="active" src="models/model1.glb" auto-rotate camera-controls style="width: 100%; height: 500px;"></model-viewer>
     <model-viewer src="models/model2.glb" auto-rotate camera-controls style="width: 100%; height: 500px; display: none;"></model-viewer>
     <model-viewer src="models/model3.glb" auto-rotate camera-controls style="width: 100%; height: 500px; display: none;"></model-viewer>
+    <model-viewer src="models/model4.glb" auto-rotate camera-controls style="width: 100%; height: 500px; display: none;"></model-viewer>
 
     <!-- Descriptions -->
     <div id="description" style="
@@ -59,9 +60,10 @@
   <script>
     const models = document.querySelectorAll('model-viewer');
     const descriptions = [
-      "Descripción del modelo 1: Este insumo representa una primera idea conceptual.",
-      "Descripción del modelo 2: Iteración avanzada con mejoras funcionales.",
-      "Descripción del modelo 3: Versión final enfocada en la presentación visual."
+      "ESP32: Microcontrolador con capacidades IoT y Bluethoot integrados.",
+      "Motor DC stepper.",
+      "Modulo Gyroscopio: Capaz de detectar la posición del cuerpo del usuario."
+      "Sensor EMG: Monitoreo de actividad muscular del usuario."
     ];
     const descBox = document.getElementById('description');
     let current = 0;
