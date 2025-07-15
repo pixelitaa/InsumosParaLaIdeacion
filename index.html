@@ -5,72 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Insumos para la ideación</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <style>
-    body {
-      font-family: Helvetica, sans-serif;
-      text-align: center;
-      background: white;
-      margin: 0;
-      padding: 20px;
-    }
+</head>
+<body>
 
-   <div style="background-color: magenta; padding: 20px; text-align: center;">
-  <h1 style="margin: 0; color: white; font-family: Helvetica, sans-serif; font-weight: bold; font-size: 28px;">
+  <!-- 🔷 MAGENTA FIXED BANNER -->
+  <div style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: magenta;
+    color: white;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 28px;
+    text-align: center;
+    padding: 20px 0;
+    z-index: 1000;
+  ">
     Insumos para la ideación
-  </h1>
-</div>
-    }
+  </div>
 
-    .carousel-container {
-      max-width: 600px;
-      margin: 40px auto;
-    }
+  <!-- Spacer to push content below the banner -->
+  <div style="height: 80px;"></div>
 
-    model-viewer {
-      width: 100%;
-      height: 500px;
-      display: none;
-    }
+  <!-- 🔄 CAROUSEL -->
+  <div style="max-width: 600px; margin: auto; text-align: center;">
 
-    model-viewer.active {
-      display: block;
-    }
+    <!-- 3D Models -->
+    <model-viewer class="active" src="models/model1.glb" auto-rotate camera-controls style="width: 100%; height: 500px;"></model-viewer>
+    <model-viewer src="models/model2.glb" auto-rotate camera-controls style="width: 100%; height: 500px; display: none;"></model-viewer>
+    <model-viewer src="models/model3.glb" auto-rotate camera-controls style="width: 100%; height: 500px; display: none;"></model-viewer>
 
-    .description {
-      font-family: "Helvetica Light", Helvetica, sans-serif;
+    <!-- Descriptions -->
+    <div id="description" style="
+      font-family: 'Helvetica Light', Helvetica, sans-serif;
       font-weight: 300;
       font-size: 16px;
       color: #333;
       margin-top: 15px;
-    }
+    ">
+      Descripción del modelo 1: Este insumo representa una primera idea conceptual.
+    </div>
 
-    .carousel-controls button {
-      padding: 10px 20px;
-      margin: 10px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-
-  <h1>Insumos para la ideación</h1>
-
-  <div class="carousel-container">
-    <model-viewer class="active" src="models/model1.glb" auto-rotate camera-controls></model-viewer>
-    <model-viewer src="models/model2.glb" auto-rotate camera-controls></model-viewer>
-    <model-viewer src="models/model3.glb" auto-rotate camera-controls></model-viewer>
+    <!-- Controls -->
+    <div style="margin-top: 20px;">
+      <button onclick="prevModel()" style="padding: 10px 20px; margin: 0 10px; font-size: 16px; cursor: pointer;">⟨ Anterior</button>
+      <button onclick="nextModel()" style="padding: 10px 20px; margin: 0 10px; font-size: 16px; cursor: pointer;">Siguiente ⟩</button>
+    </div>
   </div>
 
-  <div class="description" id="description">
-    Descripción del modelo 1: Este insumo representa una primera idea conceptual.
-  </div>
-
-  <div class="carousel-controls">
-    <button onclick="prevModel()">⟨ Anterior</button>
-    <button onclick="nextModel()">Siguiente ⟩</button>
-  </div>
-
+  <!-- 🔧 Carousel Logic -->
   <script>
     const models = document.querySelectorAll('model-viewer');
     const descriptions = [
@@ -82,7 +67,9 @@
     let current = 0;
 
     function showModel(index) {
-      models.forEach((m, i) => m.classList.toggle('active', i === index));
+      models.forEach((m, i) => {
+        m.style.display = i === index ? 'block' : 'none';
+      });
       descBox.textContent = descriptions[index];
     }
 
